@@ -12,7 +12,7 @@ if (!body) {
     throw new Error('body element not found')
 }
 
-canvas.initialize(body, 1920, 1080, {
+canvas.initialize(body, 720, 480, {
     backgroundColor: "#303030"
 }).then(() => {
     // React setup with ReactDOM
