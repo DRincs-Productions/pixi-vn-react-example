@@ -1,11 +1,10 @@
-import { canvas, narration } from '@drincs/pixi-vn';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App";
-import { startLabel } from './startLabel';
-import "./styles.css";
-import { INTERFACE_DATA_USE_QUEY_KEY } from './useQueryInterface';
+import { canvas, narration } from '@drincs/pixi-vn'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { createRoot } from 'react-dom/client'
+import App from './App'
+import './index.css'
+import { startLabel } from './labels/startLabel'
+import { INTERFACE_DATA_USE_QUEY_KEY } from './use_query/useQueryInterface'
 
 // Canvas setup with PIXI
 const body = document.body
@@ -28,14 +27,17 @@ canvas.initialize(body, 1920, 1080, {
     }
     const reactRoot = createRoot(canvas.htmlLayout)
     const queryClient = new QueryClient()
+
+    narration.onGameEnd = async () => {
+        narration.jumpLabel(startLabel, {})
+    }
+
     narration.callLabel(startLabel, {})
         .then(() => queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] }))
 
     reactRoot.render(
-        <StrictMode>
-            <QueryClientProvider client={queryClient}>
-                <App />
-            </QueryClientProvider>
-        </StrictMode>
+        <QueryClientProvider client={queryClient}>
+            <App />
+        </QueryClientProvider>
     )
 })
