@@ -3,7 +3,9 @@ import { Grid } from '@mui/system';
 import { useQueryClient } from '@tanstack/react-query';
 import { INTERFACE_DATA_USE_QUEY_KEY, useQueryChoiceMenuOptions } from '../use_query/useQueryInterface';
 
-export default function ChoiceMenu() {
+export default function ChoiceMenu({ fullscreen = true }: {
+    fullscreen?: boolean,
+}) {
     const { data: menu = [] } = useQueryChoiceMenuOptions()
     const queryClient = useQueryClient()
 
@@ -26,6 +28,7 @@ export default function ChoiceMenu() {
                 overflow: 'auto',
                 gap: 1,
                 pointerEvents: "auto",
+                maxHeight: fullscreen ? "100%" : "60%",
             }}
         >
             {menu?.map((item, index) => {
