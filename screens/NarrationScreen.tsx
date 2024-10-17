@@ -4,6 +4,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { INTERFACE_DATA_USE_QUEY_KEY, useQueryCanGoNext, useQueryDialogue } from '../use_query/useQueryInterface';
 import ChoiceMenu from './ChoiceMenu';
 
+// READ THIS: https://pixi-vn.web.app/start/interface.html#connect-the-ui-with-variables-in-the-game-variables
+
 export default function NarrationScreen() {
     const { data: { text, character } = {} } = useQueryDialogue()
     const { data: canGoNext = false } = useQueryCanGoNext()
