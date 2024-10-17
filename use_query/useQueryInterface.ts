@@ -1,6 +1,8 @@
 import { CharacterBaseModel, getCharacterById, narration } from "@drincs/pixi-vn";
 import { useQuery } from "@tanstack/react-query";
 
+// READ THIS: https://pixi-vn.web.app/start/interface.html#connect-the-ui-with-variables-in-the-game-variables
+
 export const INTERFACE_DATA_USE_QUEY_KEY = "interface_data_use_quey_key";
 
 const CAN_GO_BACK_USE_QUEY_KEY = "can_go_back_use_quey_key";
