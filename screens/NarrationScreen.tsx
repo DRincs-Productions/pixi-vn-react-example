@@ -1,32 +1,11 @@
-import { narration } from '@drincs/pixi-vn';
 import { Box, Grid, Stack } from '@mui/system';
-import { useQueryClient } from '@tanstack/react-query';
-import { INTERFACE_DATA_USE_QUEY_KEY, useQueryCanGoNext, useQueryDialogue } from '../use_query/useQueryInterface';
+import NextButton from '../components/NextButton';
+import { useQueryCanGoNext, useQueryDialogue } from '../use_query/useQueryInterface';
 import ChoiceMenu from './ChoiceMenu';
 
 export default function NarrationScreen() {
     const { data: { text, character } = {} } = useQueryDialogue()
     const { data: canGoNext = false } = useQueryCanGoNext()
-    const queryClient = useQueryClient()
-
-    async function nextOnClick(): Promise<void> {
-        try {
-            if (!narration.canGoNext) {
-                return;
-            }
-            narration.goNext({})
-                .then(() => {
-                    queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] })
-                })
-                .catch((e) => {
-                    console.error(e);
-                })
-            return;
-        } catch (e) {
-            console.error(e);
-            return;
-        }
-    }
 
     return (
         <Stack
@@ -98,18 +77,7 @@ export default function NarrationScreen() {
                     </Grid>
                 </Stack>
 
-                {canGoNext && <button
-                    color="primary"
-                    onClick={nextOnClick}
-                    style={{
-                        position: "absolute",
-                        right: 0,
-                        bottom: 0,
-                        pointerEvents: "auto",
-                    }}
-                >
-                    Next
-                </button>}
+                {canGoNext && <NextButton />}
             </Box>}
         </Stack>
     );
