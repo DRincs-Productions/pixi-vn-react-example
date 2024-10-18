@@ -1,9 +1,10 @@
 import { narration } from '@drincs/pixi-vn';
 import { useQueryClient } from '@tanstack/react-query';
-import { INTERFACE_DATA_USE_QUEY_KEY } from '../use_query/useQueryInterface';
+import { INTERFACE_DATA_USE_QUEY_KEY, useQueryCanGoNext } from '../use_query/useQueryInterface';
 
 export default function NextButton() {
     const queryClient = useQueryClient()
+    const { data: canGoNext = false } = useQueryCanGoNext()
 
     async function nextOnClick(): Promise<void> {
         try {
@@ -22,6 +23,10 @@ export default function NextButton() {
             console.error(e);
             return;
         }
+    }
+
+    if (!canGoNext) {
+        return null
     }
 
     return (

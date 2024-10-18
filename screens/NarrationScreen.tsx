@@ -22,7 +22,7 @@ export default function NarrationScreen() {
                 bottom: 0,
             }}
         >
-            {/* READ THIS: http://localhost:5173/start/choices.html#how-to-create-the-choice-menu-ui-screen */}
+            {/* READ THIS: https://pixi-vn.web.app/start/choices.html#how-to-create-the-choice-menu-ui-screen */}
             <ChoiceMenu />
             {text && <Box
                 sx={{
@@ -77,7 +77,7 @@ export default function NarrationScreen() {
                     </Grid>
                 </Stack>
 
-                {canGoNext && <NextButton />}
+                <NextButton />
             </Box>}
         </Stack>
     );
