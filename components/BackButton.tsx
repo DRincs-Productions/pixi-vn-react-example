@@ -1,17 +1,20 @@
 import { narration } from '@drincs/pixi-vn';
 import { useQueryClient } from '@tanstack/react-query';
-import { INTERFACE_DATA_USE_QUEY_KEY, useQueryCanGoNext } from '../use_query/useQueryInterface';
+import { INTERFACE_DATA_USE_QUEY_KEY, useQueryCanGoBack } from '../use_query/useQueryInterface';
 
-export default function NextButton() {
+export default function BackButton() {
     const queryClient = useQueryClient()
-    const { data: canGoNext = false } = useQueryCanGoNext()
+    const { data: canGoBack = false } = useQueryCanGoBack()
 
-    async function nextOnClick(): Promise<void> {
+    async function backOnClick(): Promise<void> {
         try {
-            if (!narration.canGoNext) {
+            if (!narration.canGoBack) {
                 return;
             }
-            narration.goNext({})
+            narration.goBack((_path) => {
+                // TODO: navigate in the url path
+                // READ THIS: https://pixi-vn.web.app/start/interface.html#navigate-switch-between-ui-screens
+            })
                 .then(() => {
                     queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] })
                 })
@@ -25,24 +28,24 @@ export default function NextButton() {
         }
     }
 
-    if (!canGoNext) {
-        return null
+    if (!canGoBack) {
+        return null;
     }
 
     return (
         <button
             color="primary"
-            onClick={nextOnClick}
+            onClick={backOnClick}
             style={{
                 position: "absolute",
                 right: 0,
-                bottom: 0,
+                bottom: 22,
                 width: 40,
                 height: 20,
                 pointerEvents: "auto",
             }}
         >
-            Next
+            Back
         </button>
     );
 }

@@ -1,11 +1,11 @@
 import { Box, Grid, Stack } from '@mui/system';
-import NextButton from '../components/NextButton';
-import { useQueryCanGoNext, useQueryDialogue } from '../use_query/useQueryInterface';
+import { useQueryCanGoBack, useQueryCanGoNext, useQueryDialogue } from '../use_query/useQueryInterface';
 import ChoiceMenu from './ChoiceMenu';
 
 export default function NarrationScreen() {
     const { data: { text, character } = {} } = useQueryDialogue()
     const { data: canGoNext = false } = useQueryCanGoNext()
+    const { data: canGoBack = false } = useQueryCanGoBack()
 
     return (
         <Stack
@@ -54,7 +54,7 @@ export default function NarrationScreen() {
                         direction={"column"}
                         sx={{
                             overflow: 'auto',
-                            marginRight: canGoNext ? "40px" : undefined,
+                            marginRight: (canGoNext || canGoBack) ? "40px" : undefined,
                             height: "100%",
                         }}
                     >
@@ -76,8 +76,6 @@ export default function NarrationScreen() {
                         </Grid>
                     </Grid>
                 </Stack>
-
-                <NextButton />
             </Box>}
         </Stack>
     );
