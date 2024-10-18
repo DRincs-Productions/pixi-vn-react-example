@@ -36,7 +36,7 @@ export default function NextButton() {
             style={{
                 position: "absolute",
                 right: 0,
-                bottom: 0,
+                bottom: 70,
                 width: 40,
                 height: 20,
                 pointerEvents: "auto",

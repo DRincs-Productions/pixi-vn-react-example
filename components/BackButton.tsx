@@ -39,7 +39,7 @@ export default function BackButton() {
             style={{
                 position: "absolute",
                 right: 0,
-                bottom: 22,
+                bottom: 48,
                 width: 40,
                 height: 20,
                 pointerEvents: "auto",
