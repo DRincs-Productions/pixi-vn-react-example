@@ -36,11 +36,11 @@ For example in React, you can use the library [react-markdown](https://www.npmjs
 
 ## Code Test
 
-\`Hello World\`
+`Hello World`
 
-\`\`\`js
+```js
 console.log("Hello World")
-\`\`\`
+```
 
 ## List Test
 
