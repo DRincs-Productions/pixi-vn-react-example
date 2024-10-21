@@ -30,7 +30,7 @@ canvas.initialize(body, 720, 480, {
 
     narration.onGameEnd = async () => {
         clearAllGameDatas()
-        narration.jumpLabel(startLabel, {})
+        await narration.jumpLabel(startLabel, {})
     }
 
     narration.callLabel(startLabel, {})
