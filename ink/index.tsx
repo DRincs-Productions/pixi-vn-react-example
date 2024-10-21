@@ -1,4 +1,4 @@
-import { canvas, narration } from '@drincs/pixi-vn'
+import { canvas, clearAllGameDatas, narration } from '@drincs/pixi-vn'
 import { importInkText } from '@drincs/pixi-vn-ink'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createRoot } from 'react-dom/client'
@@ -30,7 +30,8 @@ canvas.initialize(body, 720, 480, {
     const queryClient = new QueryClient()
 
     narration.onGameEnd = async () => {
-        narration.jumpLabel("start", {})
+        clearAllGameDatas()
+        await narration.jumpLabel("start", {})
     }
 
     importInkText([startLabel])
