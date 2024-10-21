@@ -1,13 +1,16 @@
-import { CharacterBaseModel, getCharacterById, narration } from '@drincs/pixi-vn';
 import { Box, Stack } from '@mui/system';
-import React, { useState } from 'react';
+import React from 'react';
+import { useQueryNarrativeHistory } from '../use_query/useQueryInterface';
 
 export default function HistoryScreen() {
-    const [open, setOpen] = useState(false);
+    const { data = [] } = useQueryNarrativeHistory()
 
     return (
         <dialog
-            open={open}
+            open={true}
+            style={{
+                height: "80%",
+            }}
         >
             <Box
                 sx={{
@@ -18,32 +21,33 @@ export default function HistoryScreen() {
                     py: 3,
                     overflowY: 'scroll',
                     flexDirection: 'column-reverse',
+                    pointerEvents: "auto",
+                    overflow: 'auto',
+                    height: "80%",
                 }}
             >
                 <Stack spacing={2} justifyContent="flex-end">
-                    {narration.narrativeHistory
-                        .map((step) => {
-                            let character = step.dialoge?.character ? getCharacterById(step.dialoge?.character) ?? new CharacterBaseModel(step.dialoge?.character, { name: tNarration(step.dialoge?.character) }) : undefined
-                            return {
-                                character: character?.name ? character.name + (character.surname ? " " + character.surname : "") : undefined,
-                                text: step.dialoge?.text || "",
-                                icon: character?.icon,
-                                choices: step.choices,
-                                inputValue: step.inputValue,
-                            }
-                        })
+                    {data
                         .map((data, index) => {
                             return <React.Fragment key={"history" + index}>
                                 <Stack
                                     direction="row"
                                     spacing={1.5}
                                 >
-                                    <Avatar
-                                        size="sm"
+                                    <img
                                         src={data.icon}
+                                        loading="lazy"
+                                        alt=""
+                                        style={{
+                                            verticalAlign: "middle",
+                                            maxWidth: "50px",
+                                            maxHeight: "50px",
+                                            borderRadius: "50%",
+                                        }}
                                     />
                                     <Box sx={{ flex: 1 }}>
                                         {data.character && data.character}
+                                        <div />
                                         {data.text}
                                     </Box>
                                 </Stack>
@@ -59,35 +63,42 @@ export default function HistoryScreen() {
                                             if (choice.isResponse) {
                                                 return <div
                                                     key={"choices-success" + index}
-                                                    color="success"
-                                                    endDecorator={<CheckIcon />}
                                                     style={{
                                                         display: "inline-block",
-                                                        padding: "0 25px",
-                                                        height: "50px",
-                                                        fontSize: "16px",
-                                                        lineHeight: "50px",
+                                                        padding: "5px 5px",
+                                                        fontSize: "12px",
                                                         borderRadius: "25px",
-                                                        backgroundColor: "#f1f1f1",
+                                                        backgroundColor: "#21ff3e",
                                                     }}
                                                 >
                                                     {choice.text}
                                                 </div>
                                             }
-                                            return <Chip
+                                            return <div
                                                 key={"choices" + index}
-                                                color="primary"
-
+                                                style={{
+                                                    display: "inline-block",
+                                                    padding: "5px 5px",
+                                                    fontSize: "12px",
+                                                    borderRadius: "25px",
+                                                    backgroundColor: "#bcfdff",
+                                                }}
                                             >
                                                 {choice.text}
-                                            </Chip>
+                                            </div>
                                         })}
-                                        {data.inputValue && <Chip
+                                        {data.inputValue && <div
                                             key={"choices-success" + index}
-                                            color="neutral"
+                                            style={{
+                                                display: "inline-block",
+                                                padding: "5px 5px",
+                                                fontSize: "12px",
+                                                borderRadius: "25px",
+                                                backgroundColor: "#b0c2b2",
+                                            }}
                                         >
                                             {data.inputValue.toString()}
-                                        </Chip>}
+                                        </div>}
                                     </Box>
                                 </Stack>
                             </React.Fragment>
