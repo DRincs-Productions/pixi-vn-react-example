@@ -33,7 +33,7 @@ For example in React, you can use the library [react-markdown](https://www.npmjs
 ### H3 Test
 
 #### H4 Test
- 
+
 ## Code Test
 
 \`Hello World\`
@@ -45,7 +45,9 @@ console.log("Hello World")
 ## List Test
 
 - Item 1
-* Item 2
+
+- Item 2
+
 - [x] Item 3
 
 ## Table Test
