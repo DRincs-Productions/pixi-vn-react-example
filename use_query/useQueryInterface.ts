@@ -70,3 +70,23 @@ export function useQueryCanGoNext() {
 		},
 	});
 }
+
+const NARRATIVE_HISTORY_USE_QUEY_KEY = "narrative_history_use_quey_key";
+export function useQueryNarrativeHistory() {
+	return useQuery({
+		queryKey: [INTERFACE_DATA_USE_QUEY_KEY, NARRATIVE_HISTORY_USE_QUEY_KEY],
+		queryFn: () => {
+			return narration.narrativeHistory
+				.map((step) => {
+					let character = step.dialoge?.character ? getCharacterById(step.dialoge?.character) ?? new CharacterBaseModel(step.dialoge?.character, { name: step.dialoge?.character }) : undefined
+					return {
+						character: character?.name ? character.name + (character.surname ? " " + character.surname : "") : undefined,
+						text: step.dialoge?.text || "",
+						icon: character?.icon,
+						choices: step.choices,
+						inputValue: step.inputValue,
+					}
+				})
+		},
+	});
+}
