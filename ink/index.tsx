@@ -35,10 +35,10 @@ canvas.initialize(body, 720, 480, {
     }
 
     importInkText([startLabel])
-    // .then(() => {
-    narration.callLabel("start", {})
-        .then(() => queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] }))
-    // })
+        .then(() => {
+            narration.callLabel("start", {})
+                .then(() => queryClient.invalidateQueries({ queryKey: [INTERFACE_DATA_USE_QUEY_KEY] }))
+        })
 
     reactRoot.render(
         <QueryClientProvider client={queryClient}>

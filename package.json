@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@drincs/pixi-vn": "latest",
-    "@drincs/pixi-vn-ink": "^0.2.4",
+    "@drincs/pixi-vn-ink": "latest",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/system": "^6.1.3",
