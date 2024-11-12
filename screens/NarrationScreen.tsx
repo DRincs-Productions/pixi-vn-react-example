@@ -51,7 +51,7 @@ export default function NarrationScreen() {
                     </div>}
                     <Grid
                         container
-                        direction={"column"}
+                        direction={"row"}
                         sx={{
                             overflow: 'auto',
                             marginRight: (canGoNext || canGoBack) ? "40px" : undefined,
