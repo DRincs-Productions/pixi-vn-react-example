@@ -1,7 +1,7 @@
 import { CharacterBaseModel, getCharacterById, narration } from "@drincs/pixi-vn";
 import { useQuery } from "@tanstack/react-query";
 
-// READ THIS: https://pixi-vn.web.app/start/interface-connect-storage.htlm
+// READ THIS: https://pixi-vn.web.app/start/interface-connect-storage.html
 
 export const INTERFACE_DATA_USE_QUEY_KEY = "interface_data_use_quey_key";
 
